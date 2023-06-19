@@ -5,5 +5,10 @@
             "__name": "BB_WEB_SERVER_PORT",
             "__format": "number"
         }
+    },
+    "rmq": {
+        "betBot": {
+            "url": "BB_RMQ_BET_BOT_CONNECTION_URL"
+        }
     }
 }

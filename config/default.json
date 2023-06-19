@@ -7,5 +7,21 @@
         "blogabet": {
             "token": "BB_TELEGRAM_BOT_BLOGABET_TOKEN"
         }
+    },
+    "rmq": {
+        "betBot": {
+            "assertTopology": true,
+            "topology": {
+                "exchanges": {
+                    "signals": {
+                        "name": "betting-signals",
+                        "type": "topic",
+                        "options": {
+                            "durable": true
+                        }
+                    }
+                }
+            }
+        }
     }
 }
