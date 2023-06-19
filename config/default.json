@@ -1,4 +1,5 @@
 {
+    "logLevel": "debug",
     "webServer": {
         "port": 9999
     }

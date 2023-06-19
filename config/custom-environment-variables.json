@@ -1,4 +1,5 @@
 {
+    "logLevel": "BB_LOG_LEVEL",
     "webServer": {
         "port": {
             "__name": "BB_WEB_SERVER_PORT",
