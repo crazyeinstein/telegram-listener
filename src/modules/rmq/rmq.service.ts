@@ -27,7 +27,7 @@ export class RmqService implements OnApplicationBootstrap {
     );
 
     if (betBotAssertTopology) {
-      const betBotTopology = this.configService.get<any>('rmq.betBot.url');
+      const betBotTopology = this.configService.get<any>('rmq.betBot.topology');
 
       await new TopologyAssertService(
         betBotTopology as RabbitMQTopologyConfig,

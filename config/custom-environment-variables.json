@@ -10,5 +10,8 @@
         "betBot": {
             "url": "BB_RMQ_BET_BOT_CONNECTION_URL"
         }
+    },
+    "mongo": {
+        "url": "BB_MONGO_CONNECTION_STRING"
     }
 }
