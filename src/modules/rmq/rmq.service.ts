@@ -37,7 +37,7 @@ export class RmqService implements OnApplicationBootstrap {
         .catch((err) => {
           logger.error(`Failed to assert topology: ${err}`);
 
-          throw new Error(`Failed to assert monitoring topology: ${err}`);
+          throw new Error(`Failed to assert betBot topology: ${err}`);
         });
     }
 
