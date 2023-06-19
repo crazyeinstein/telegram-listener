@@ -1,0 +1,8 @@
+{
+    "webServer": {
+        "port": {
+            "__name": "BB_WEB_SERVER_PORT",
+            "__format": "number"
+        }
+    }
+}
