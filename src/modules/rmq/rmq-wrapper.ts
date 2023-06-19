@@ -1,10 +1,9 @@
-import { Injectable } from '@nestjs/common';
 import * as amqp from 'amqplib';
 import { createLogger } from '../../components/logger';
+import { Options } from 'amqplib';
 
 const logger = createLogger(module);
 
-@Injectable()
 export class RmqWrapper {
   private channel: amqp.ConfirmChannel = null;
   private channelCreationPromise: Promise<void> = null;
@@ -82,7 +81,22 @@ export class RmqWrapper {
     return this.channelCreationPromise;
   }
 
-  async setTeamScoreAndPeriod(): Promise<void> {
+  async publish(
+    exchange: string,
+    routingKey: string,
+    content: Buffer,
+    options: Options.Publish = {},
+  ): Promise<void> {
     await this.ensureChannelCreated();
+
+    return new Promise((resolve, reject) => {
+      this.channel.publish(exchange, routingKey, content, options, (err) => {
+        if (err) {
+          return reject(err);
+        }
+
+        return resolve();
+      });
+    });
   }
 }
