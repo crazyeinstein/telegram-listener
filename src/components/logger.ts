@@ -18,6 +18,9 @@ const formatContext = function () {
       return `[${ctx.data.rid}] [${ctx.data.method.padStart(6)} ${
         ctx.data.path
       }]`;
+    // Stands for: Telegram Message
+    case 'tgm':
+      return `[tgm-${ctx.data.id}]`;
     default:
       return ctx.name;
   }

@@ -1,8 +1,10 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import * as uuid from 'uuid';
 import { ConfigService } from '../config/config.service';
 import * as TelegramBot from 'node-telegram-bot-api';
 import { MessageHandlerService } from './message-handler.service';
 import { createLogger } from '../../components/logger';
+import { run } from '../../components/context';
 
 const logger = createLogger(module);
 
@@ -31,7 +33,9 @@ export class TelegramListenerService implements OnApplicationBootstrap {
       logger.info(`Bot launched successfully: ${JSON.stringify(info)}`);
 
       this.telegramBot.on('channel_post', (message) => {
-        this.messageHandlerService.onMessage(message);
+        run('tgm', { id: uuid.v4() }, () => {
+          this.messageHandlerService.onMessage(message);
+        });
       });
     } catch (err) {
       throw new Error(`Telegam bot module creation error: ${err.message}`);
