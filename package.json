@@ -23,6 +23,7 @@
     "cls-hooked": "^4.2.2",
     "config": "^3.3.9",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "mongoose": "^7.3.0",
     "node-telegram-bot-api": "^0.61.0",
     "reflect-metadata": "^0.1.13",
