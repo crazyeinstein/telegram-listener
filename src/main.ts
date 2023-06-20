@@ -46,9 +46,7 @@ async function bootstrap() {
       logger.info(`Application listening on port ${WEB_SERVER_PORT}`);
     });
   } catch (err) {
-    logger.error(
-      `SERVICE_ERROR: Failed to initialize application: ${err.message}`,
-    );
+    logger.error(`SERVICE_ERROR: Failed to initialize application: ${err.message}`);
 
     process.exitCode = 1;
 
@@ -68,16 +66,10 @@ process.on('uncaughtException', (err) => {
   }, 500);
 });
 
-process.on(
-  'unhandledRejection',
-  (reason: { message: string; stack: string }) => {
-    logger.error(
-      `SERVICE_ERROR: UNHANDLED_REJECTION:: ${reason?.message}`,
-      reason?.stack,
-    );
+process.on('unhandledRejection', (reason: { message: string; stack: string }) => {
+  logger.error(`SERVICE_ERROR: UNHANDLED_REJECTION:: ${reason?.message}`, reason?.stack);
 
-    setTimeout(() => {
-      process.exit(1);
-    }, 500);
-  },
-);
+  setTimeout(() => {
+    process.exit(1);
+  }, 500);
+});

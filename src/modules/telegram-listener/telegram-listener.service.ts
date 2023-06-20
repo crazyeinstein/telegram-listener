@@ -17,9 +17,7 @@ export class TelegramListenerService implements OnApplicationBootstrap {
     private readonly configService: ConfigService,
     private readonly messageHandlerService: MessageHandlerService,
   ) {
-    this.telegramBotToken = this.configService.get(
-      'telegramBot.blogabet.token',
-    );
+    this.telegramBotToken = this.configService.get('telegramBot.blogabet.token');
   }
 
   async onApplicationBootstrap() {

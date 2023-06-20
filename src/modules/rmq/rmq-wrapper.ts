@@ -65,9 +65,7 @@ export class RmqWrapper {
           this.channelCreationPromise = null;
         })
         .catch((error) => {
-          logger.error(
-            `SERVICE_ALERT::Failed to establish connection to broker - ${error.message}`,
-          );
+          logger.error(`SERVICE_ALERT::Failed to establish connection to broker - ${error.message}`);
 
           this.channel = null;
           this.channelCreationPromise = null;
@@ -81,12 +79,7 @@ export class RmqWrapper {
     return this.channelCreationPromise;
   }
 
-  async publish(
-    exchange: string,
-    routingKey: string,
-    content: Buffer,
-    options: Options.Publish = {},
-  ): Promise<void> {
+  async publish(exchange: string, routingKey: string, content: Buffer, options: Options.Publish = {}): Promise<void> {
     await this.ensureChannelCreated();
 
     return new Promise((resolve, reject) => {

@@ -1,9 +1,6 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
-import {
-  RabbitMQTopologyConfig,
-  TopologyAssertService,
-} from './topologyAssertService';
+import { RabbitMQTopologyConfig, TopologyAssertService } from './topologyAssertService';
 import { createLogger } from '../../components/logger';
 import { RmqWrapper } from './rmq-wrapper';
 
@@ -20,19 +17,13 @@ export class RmqService implements OnApplicationBootstrap {
   }
 
   private async setUpBbRabbitInstance() {
-    const betBotConnectionUrl =
-      this.configService.get<string>('rmq.betBot.url');
-    const betBotAssertTopology = this.configService.get<boolean>(
-      'rmq.betBot.assertTopology',
-    );
+    const betBotConnectionUrl = this.configService.get<string>('rmq.betBot.url');
+    const betBotAssertTopology = this.configService.get<boolean>('rmq.betBot.assertTopology');
 
     if (betBotAssertTopology) {
       const betBotTopology = this.configService.get<any>('rmq.betBot.topology');
 
-      await new TopologyAssertService(
-        betBotTopology as RabbitMQTopologyConfig,
-        betBotConnectionUrl,
-      )
+      await new TopologyAssertService(betBotTopology as RabbitMQTopologyConfig, betBotConnectionUrl)
         .assertTopology()
         .catch((err) => {
           logger.error(`Failed to assert topology: ${err}`);

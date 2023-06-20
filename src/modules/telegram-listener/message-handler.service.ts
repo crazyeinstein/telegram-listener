@@ -19,9 +19,7 @@ export class MessageHandlerService {
     private readonly rmqService: RmqService,
     private readonly configService: ConfigService,
   ) {
-    this.signalsExchange = this.configService.get(
-      'rmq.betBot.topology.exchanges.signals.name',
-    );
+    this.signalsExchange = this.configService.get('rmq.betBot.topology.exchanges.signals.name');
   }
 
   async onMessage(message: TelegramBot.Message) {
@@ -32,18 +30,12 @@ export class MessageHandlerService {
       tgMessage: message,
     };
 
-    await this.rmqService.betBotRmqWrapper.publish(
-      this.signalsExchange,
-      '',
-      Buffer.from(JSON.stringify(signalData)),
-    );
+    await this.rmqService.betBotRmqWrapper.publish(this.signalsExchange, '', Buffer.from(JSON.stringify(signalData)));
 
     const signal = new this.signalModel(signalData);
 
     await signal.save().catch((err) => {
-      logger.error(
-        `SERVICE_ERROR: failed to save tgMessage signal to DB: ${err.message}`,
-      );
+      logger.error(`SERVICE_ERROR: failed to save tgMessage signal to DB: ${err.message}`);
     });
   }
 }

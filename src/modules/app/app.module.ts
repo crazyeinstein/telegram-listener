@@ -6,11 +6,6 @@ import { RmqModule } from '../rmq/rmq.module';
 import * as config from 'config';
 
 @Module({
-  imports: [
-    ConfigModule,
-    TelegramListenerModule,
-    RmqModule,
-    MongooseModule.forRoot(config.get('mongo.url')),
-  ],
+  imports: [ConfigModule, TelegramListenerModule, RmqModule, MongooseModule.forRoot(config.get('mongo.url'))],
 })
 export class AppModule {}

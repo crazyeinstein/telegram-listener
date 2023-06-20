@@ -15,9 +15,7 @@ const formatContext = function () {
 
   switch (ctx.name) {
     case 'http':
-      return `[${ctx.data.rid}] [${ctx.data.method.padStart(6)} ${
-        ctx.data.path
-      }]`;
+      return `[${ctx.data.rid}] [${ctx.data.method.padStart(6)} ${ctx.data.path}]`;
     // Stands for: Telegram Message
     case 'tgm':
       return `[tgm-${ctx.data.id}]`;
@@ -60,9 +58,7 @@ export function createLogger(callingModule) {
           return info;
         })(),
         winston.format.printf((info) => {
-          return `${info.timestamp} ${info.level.padStart(16)} ${info.ctx} ${
-            info.label
-          }:  ${info.message}`;
+          return `${info.timestamp} ${info.level.padStart(16)} ${info.ctx} ${info.label}:  ${info.message}`;
         }),
       ),
     }),
