@@ -25,6 +25,9 @@ export class RmqService implements OnApplicationBootstrap {
 
       await new TopologyAssertService(betBotTopology as RabbitMQTopologyConfig, betBotConnectionUrl)
         .assertTopology()
+        .then(() => {
+          logger.info('Topology asserted successfully');
+        })
         .catch((err) => {
           logger.error(`Failed to assert topology: ${err}`);
 

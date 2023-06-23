@@ -13,7 +13,7 @@
             "assertTopology": true,
             "topology": {
                 "exchanges": {
-                    "signals": {
+                    "bettingSignals": {
                         "name": "betting-signals",
                         "type": "topic",
                         "options": {

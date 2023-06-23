@@ -19,7 +19,7 @@ export class MessageHandlerService {
     private readonly rmqService: RmqService,
     private readonly configService: ConfigService,
   ) {
-    this.signalsExchange = this.configService.get('rmq.betBot.topology.exchanges.signals.name');
+    this.signalsExchange = this.configService.get('rmq.betBot.topology.exchanges.bettingSignals.name');
   }
 
   async onMessage(message: TelegramBot.Message) {
